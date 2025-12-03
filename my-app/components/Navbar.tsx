@@ -84,6 +84,13 @@ export default function Navbar() {
               </Link>
 
               <Link
+                href="/loja"
+                className="text-green-700 font-medium hover:text-green-900 transition"
+              >
+                Loja
+              </Link>
+
+              <Link
                 href="/colecao"
                 className="text-green-700 font-medium hover:text-green-900 transition"
               >

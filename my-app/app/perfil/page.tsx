@@ -1,33 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { useState } from "react";
+import useBalance from "@/hooks/useBalance";
 
 export default function PerfilPage() {
-  const [wallet, setWallet] = useState<string | null>(null);
-  const [balance, setBalance] = useState<string | null>(null);
+  const savedWallet = typeof window !== "undefined" ? localStorage.getItem("wallet_address") : null;
+  const [wallet] = useState<string | null>(savedWallet);
 
-  useEffect(() => {
-    const savedWallet = localStorage.getItem("wallet_address");
-
-    if (!savedWallet) return;
-
-    setWallet(savedWallet);
-
-    // Buscar saldo da carteira
-    const loadBalance = async () => {
-      if (typeof window.ethereum !== "undefined") {
-        const provider = new ethers.BrowserProvider(window.ethereum);
-
-        const rawBalance = await provider.getBalance(savedWallet);
-        const ethBalance = ethers.formatEther(rawBalance);
-
-        setBalance(Number(ethBalance).toFixed(4)); // ex.: 0.1234 ETH
-      }
-    };
-
-    loadBalance();
-  }, []);
+  const { balance, loading, error, wrongNetwork, refresh, switchToSepolia } = useBalance(wallet);
 
   if (!wallet) {
     return (
@@ -51,10 +31,33 @@ export default function PerfilPage() {
         </div>
 
         <div className="p-4 bg-gray-800 rounded-lg border border-gray-700">
-          <p className="text-sm text-gray-400">Saldo:</p>
-          <p className="text-2xl font-bold text-green-400 mt-1">
-            {balance ? `${balance} ETH` : "Carregando..."}
-          </p>
+          <div className="flex justify-between items-center mb-2">
+            <p className="text-sm text-gray-400">Saldo (Sepolia):</p>
+            <button
+              onClick={refresh}
+              disabled={loading}
+              className="text-xs text-green-400 hover:text-green-300 disabled:text-gray-500"
+            >
+              {loading ? "⟳ Atualizando..." : "↻ Atualizar"}
+            </button>
+          </div>
+          {error ? (
+            <div>
+              <p className="text-red-400 text-sm mb-3">{error}</p>
+              {wrongNetwork && (
+                <button
+                  onClick={switchToSepolia}
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition"
+                >
+                  🔄 Trocar para Sepolia
+                </button>
+              )}
+            </div>
+          ) : (
+            <p className="text-2xl font-bold text-green-400 mt-1">
+              {balance !== null ? `${balance} ETH` : "Carregando..."}
+            </p>
+          )}
         </div>
       </div>
     </div>
