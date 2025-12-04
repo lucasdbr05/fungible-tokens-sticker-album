@@ -25,6 +25,8 @@ export default function ColecaoPage() {
   const [balances, setBalances] = useState<{ [key: number]: number }>({});
   const [metadata, setMetadata] = useState<{ [key: number]: Metadata }>({});
   const [loading, setLoading] = useState(true);
+  const TEAMS = ["Time A", "Time B"];
+  const [selectedTeam, setSelectedTeam] = useState("Time A");
 
   useEffect(() => {
     const saved = localStorage.getItem("wallet_address");
@@ -79,87 +81,120 @@ export default function ColecaoPage() {
     }
   };
 
-  // ---- UI ----
+
+    // ---- UI ----
   if (!wallet) {
     return (
-      <div className="text-center mt-24 text-gray-300 text-xl">
-        Nenhum usuário logado.
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-8">
+        <div className="max-w-4xl mx-auto text-center mt-20">
+          <h1 className="text-4xl font-bold text-green-700 mb-4">
+            Minhas Figurinhas
+          </h1>
+          <p className="text-xl text-gray-600">
+            Conecte sua carteira para visualizar sua coleção
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-16 px-6">
-      <h1 className="text-3xl font-bold text-green-400 mb-8 text-center drop-shadow-lg">
-        Minhas Figurinhas
-      </h1>
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-8">
+      <div className="max-w-6xl mx-auto">
 
-      {loading ? (
-        <p className="text-center text-gray-300 text-lg">Carregando coleção...</p>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {STICKERS.map((id) => {
-            const amount = balances[id] ?? 0;
-            const data = metadata[id];
+        <h1 className="text-4xl font-bold text-green-700 mb-10 text-center">
+          Minhas Figurinhas
+        </h1>
 
-            if (!data) return null;
+        {/* Abas dos times */}
+        <div className="flex justify-center mb-10 gap-4">
+          {TEAMS.map((team) => (
+            <button
+              key={team}
+              onClick={() => setSelectedTeam(team)}
+              className={`
+                px-6 py-2 rounded-full font-semibold transition shadow
+                ${selectedTeam === team
+                  ? "bg-green-600 text-white shadow-lg"
+                  : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"}
+              `}
+            >
+              {team}
+            </button>
+          ))}
+        </div>
 
-            return (
-              <div key={id} className="flex flex-col items-center">
+        {loading ? (
+          <p className="text-center text-gray-500 text-lg">Carregando coleção...</p>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {STICKERS.map((id) => {
+              const amount = balances[id] ?? 0;
+              const data = metadata[id];
+              if (!data) return null;
 
-                {/* FIGURINHA ESTILO PANINI */}
-                <div className="relative bg-white border-4 border-white rounded-xl shadow-xl p-2 flex flex-col w-full">
+              if (data.team !== selectedTeam) return null;
 
-                  <div className="border-4 border-yellow-500 rounded-lg p-1 bg-black/10 flex flex-col">
+              return (
+                <div
+                  key={id}
+                  className="flex flex-col items-center bg-white rounded-xl shadow-md p-4 border border-gray-200"
+                >
+                  {/* FIGURINHA ESTILO PANINI */}
+                  <div className="relative w-full bg-white border border-gray-300 rounded-lg shadow-sm p-2">
 
-                    {/* LOGO DA COPA */}
-                    <img
-                      src="/icons/worldcup.png"
-                      className="absolute top-3 right-4 w-6 h-6"
-                      alt="World Cup Logo"
-                    />
+                    <div className="border-4 border-yellow-500 rounded-lg p-1 bg-white">
 
-                    {/* TIME */}
-                    <div className="text-center text-xs font-semibold text-gray-700 mb-2">
-                      {data.team}
-                    </div>
-
-                    {/* FOTO */}
-                    <div className="w-full h-40 bg-gray-200 rounded-lg overflow-hidden">
+                      {/* LOGO */}
                       <img
-                        src={data.image}
-                        alt={data.name}
-                        className="w-full h-full object-cover"
+                        src="/icons/logo-exatascup.png"
+                        className="absolute top-3 right-3 w-6 h-6 opacity-90"
+                        alt="World Cup Logo"
                       />
-                    </div>
 
-                    {/* NOME + BANDEIRA */}
-                    <div className="flex items-center justify-between mt-2">
-
-                      <div className="flex items-center gap-1">
-                        <img src="/icons/brazil.png" className="w-5 h-5" alt="Flag" />
-                        <span className="text-xs font-bold text-green-800">BRA</span>
+                      {/* TIME */}
+                      <div className="text-center text-xs font-semibold text-gray-600 mb-2">
+                        {data.team}
                       </div>
 
-                      <span className="text-xs font-bold text-gray-700">{data.name}</span>
+                      {/* FOTO */}
+                      <div className="w-full h-40 bg-gray-100 rounded-md overflow-hidden shadow-sm">
+                        <img
+                          src={data.image}
+                          alt={data.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* NOME + BANDEIRA */}
+                      <div className="flex items-center justify-between mt-2 px-1">
+                        <div className="flex items-center gap-1">
+                          <img src="/icons/brazil.png" className="w-5 h-5" alt="BRA" />
+                          <span className="text-xs font-bold text-green-800">BRA</span>
+                        </div>
+
+                        <span className="text-xs font-bold text-gray-700">
+                          {data.name}
+                        </span>
+                      </div>
                     </div>
-
                   </div>
-                </div>
 
-                {/* QUANTIDADE FORA DO CARD — COM CÍRCULO */}
-                <div className="mt-3 flex justify-center">
-                  <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-lg">
-                      {amount}x
-                    </span>
+                  {/* QUANTIDADE */}
+                  <div className="mt-4">
+                    <div className="w-12 h-12 rounded-full bg-green-600 shadow-md flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">
+                        {amount}x
+                      </span>
+                    </div>
                   </div>
+
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

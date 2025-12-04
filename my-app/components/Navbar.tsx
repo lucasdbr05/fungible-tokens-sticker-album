@@ -77,13 +77,6 @@ export default function Navbar() {
           {logged && (
             <>
               <Link
-                href="/perfil"
-                className="text-green-700 font-medium hover:text-green-900 transition"
-              >
-                Perfil
-              </Link>
-
-              <Link
                 href="/loja"
                 className="text-green-700 font-medium hover:text-green-900 transition"
               >
