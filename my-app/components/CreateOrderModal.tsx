@@ -1,5 +1,7 @@
 "use client";
 
+import { ensureApproval } from "@/app/util/getApproval";
+import contractInfo from "@/contract-info.json";
 import { ethers } from "ethers";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
@@ -98,7 +100,9 @@ export default function CreateOrderModal({
 
     try {
       // 🔏 gerar assinatura EIP-712
-      const signature = await signOrder(newOrder, albumAddress);
+      alert("É necessário fornecer permissão e assinar");
+      await ensureApproval(albumAddress, userWallet, contractInfo.swap_address);
+      const signature = await signOrder(newOrder, contractInfo.swap_address);
 
       console.log(newOrder);
       console.log(signature);
