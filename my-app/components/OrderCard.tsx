@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function OrderCard({ order }: { order: any }) {
   const deadlineDate = order.deadline
     ? new Date(order.deadline).toLocaleString("pt-BR")
@@ -14,11 +12,12 @@ export default function OrderCard({ order }: { order: any }) {
 
       {/* GIVES */}
       <div className="mb-4">
-        <p className="text-gray-700 font-semibold mb-1">Entrega (Give):</p>
+        <p className="text-gray-700 font-semibold mb-1">Você recebe:</p>
         <ul className="bg-green-50 p-3 rounded-lg border border-green-200">
           {order.tokenIdGive.map((id: number, i: number) => (
             <li key={i} className="text-gray-800">
-              🟩 Figurinha <b>#{id}</b> — Quantidade: <b>{order.amountGive[i]}</b>
+              🟩 Figurinha <b>#{id}</b> — Quantidade:{" "}
+              <b>{order.amountGive[i]}</b>
             </li>
           ))}
         </ul>
@@ -26,11 +25,12 @@ export default function OrderCard({ order }: { order: any }) {
 
       {/* WANTS */}
       <div className="mb-4">
-        <p className="text-gray-700 font-semibold mb-1">Recebe (Want):</p>
+        <p className="text-gray-700 font-semibold mb-1">Você Entrega:</p>
         <ul className="bg-orange-50 p-3 rounded-lg border border-orange-200">
           {order.tokenIdWant.map((id: number, i: number) => (
             <li key={i} className="text-gray-800">
-              🟧 Figurinha <b>#{id}</b> — Quantidade: <b>{order.amountWant[i]}</b>
+              🟧 Figurinha <b>#{id}</b> — Quantidade:{" "}
+              <b>{order.amountWant[i]}</b>
             </li>
           ))}
         </ul>

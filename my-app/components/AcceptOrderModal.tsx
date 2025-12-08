@@ -145,6 +145,7 @@ export default function AcceptOrderModal({
       console.log("✅ Swap executed!");
 
       alert("Troca executada com sucesso!");
+      // Delete order from db
       onClose();
     } catch (err: any) {
       console.error("❌ Error executing order:", err);
