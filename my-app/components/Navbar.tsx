@@ -69,7 +69,7 @@ export default function Navbar() {
               </Link>
 
               <Link href="/sobre" className="text-green-700 font-medium hover:text-green-900 transition">
-                Contact
+                About
               </Link>
             </>
           )}
