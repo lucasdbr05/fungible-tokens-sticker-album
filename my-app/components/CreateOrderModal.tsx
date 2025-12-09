@@ -39,7 +39,6 @@ export default function CreateOrderModal({
     const signer = await provider.getSigner();
     const network = await provider.getNetwork();
 
-    // 🏷️ EIP-712 domain (igual ao do contrato)
     const domain = {
       name: "ERC1155SignedSwap",
       version: "1",
@@ -47,7 +46,6 @@ export default function CreateOrderModal({
       verifyingContract: contractAddress,
     };
 
-    // 🧱 Deve refletir EXATAMENTE o struct Order do contrato
     const types = {
       Order: [
         { name: "maker", type: "address" },
@@ -63,7 +61,6 @@ export default function CreateOrderModal({
       ],
     };
 
-    // 🧩 Agora os arrays são passados diretamente
     const value = {
       maker: order.maker,
       tokenGive: order.tokenGive,
@@ -77,7 +74,6 @@ export default function CreateOrderModal({
       deadline: BigInt(order.deadline),
     };
 
-    // 🔏 Assina os dados tipados
     return signer.signTypedData(domain, types, value);
   }
 
@@ -133,50 +129,77 @@ export default function CreateOrderModal({
         </h2>
 
         <div className="space-y-3">
-          
-          <input
-            className="input"
-            placeholder="TokenId Give (e.g. 1,3,5)"
-            value={tokenIdGive}
-            onChange={(e) => setTokenIdGive(e.target.value)}
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              TokenId Give
+            </label>
+            <input
+              className="input"
+              placeholder="e.g. 1,3,5"
+              value={tokenIdGive}
+              onChange={(e) => setTokenIdGive(e.target.value)}
+            />
+          </div>
 
-          <input
-            className="input"
-            placeholder="Amounts Give (e.g. 1,1,2)"
-            value={amountGive}
-            onChange={(e) => setAmountGive(e.target.value)}
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Amounts Give
+            </label>
+            <input
+              className="input"
+              placeholder="e.g. 1,1,2"
+              value={amountGive}
+              onChange={(e) => setAmountGive(e.target.value)}
+            />
+          </div>
 
-          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              TokenId Want
+            </label>
+            <input
+              className="input"
+              placeholder="e.g. 2,4"
+              value={tokenIdWant}
+              onChange={(e) => setTokenIdWant(e.target.value)}
+            />
+          </div>
 
-          <input
-            className="input"
-            placeholder="TokenId Want (e.g. 2,4)"
-            value={tokenIdWant}
-            onChange={(e) => setTokenIdWant(e.target.value)}
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Amounts Want
+            </label>
+            <input
+              className="input"
+              placeholder="e.g. 1,2"
+              value={amountWant}
+              onChange={(e) => setAmountWant(e.target.value)}
+            />
+          </div>
 
-          <input
-            className="input"
-            placeholder="Amounts Want (e.g. 1,2)"
-            value={amountWant}
-            onChange={(e) => setAmountWant(e.target.value)}
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Taker (optional)
+            </label>
+            <input
+              className="input"
+              placeholder="Address"
+              value={taker}
+              onChange={(e) => setTaker(e.target.value)}
+            />
+          </div>
 
-          <input
-            className="input"
-            placeholder="Taker (optional)"
-            value={taker}
-            onChange={(e) => setTaker(e.target.value)}
-          />
-
-          <input
-            type="datetime-local"
-            className="input"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Deadline
+            </label>
+            <input
+              type="datetime-local"
+              className="input"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+            />
+          </div>
 
           <button className="w-full bg-green-600 text-white rounded-xl p-3">
             Create Order

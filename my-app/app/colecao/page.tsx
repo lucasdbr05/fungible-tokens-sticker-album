@@ -127,9 +127,15 @@ export default function ColecaoPage() {
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-500 text-lg">
-            Loading collection...
-          </p>
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mb-4"></div>
+            <p className="text-center text-gray-500 text-lg">
+              Loading your sticker collection...
+            </p>
+            <p className="text-center text-gray-400 text-sm mt-2">
+              Fetching balances from the blockchain
+            </p>
+          </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {STICKERS.map((id) => {
