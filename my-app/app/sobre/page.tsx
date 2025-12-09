@@ -11,247 +11,246 @@ export default function ComoFeitoPage() {
         {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-green-700">
-            Como o Trabalho Foi Desenvolvido
+            How the Project Was Developed
           </h1>
           <p className="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">
-            Uma explicação completa e aprofundada sobre a arquitetura, tecnologias,
-            decisões de design e funcionamento interno do projeto do álbum de figurinhas digitais
-            da Exatas Cup.
+            A complete and in-depth explanation of the architecture, technologies,
+            design decisions and internal functioning of the Exatas Cup digital sticker
+            album project.
           </p>
         </header>
 
         <div className="space-y-10">
 
-          {/* --- DESCRIÇÃO DO TRABALHO --- */}
+          {/* --- PROJECT DESCRIPTION --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Descrição Geral do Projeto</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">General Project Description</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              O projeto consiste no desenvolvimento de um ecossistema completo baseado em <strong>Web3</strong>,
-              projetado para representar figurinhas digitais de jogadores da Exatas Cup. A ideia central
-              foi criar um ambiente onde os usuários pudessem <strong>colecionar, visualizar, comprar e trocar</strong> figurinhas digitais de maneira descentralizada, utilizando uma blockchain real para registrar
-              propriedade, transferências e interações.
+              The project consists of developing a complete ecosystem based on <strong>Web3</strong>,
+              designed to represent digital stickers of players from the Exatas Cup. The core idea
+              was to create an environment where users could <strong>collect, view, buy and trade</strong>
+              digital stickers in a decentralized way, using a real blockchain to record
+              ownership, transfers and interactions.
             </p>
 
             <p className="text-gray-700 leading-relaxed mt-3">
-              A Exatas Cup é um campeonato de futsal organizado por estudantes do Instituto de Exatas da Universidade
-              de Brasília (UnB), reunindo alunos dos cursos de Matemática, Ciência da Computação e Estatística. O
-              torneio teve edições realizadas em 2024 e 2025 e se tornou um evento significativo na comunidade
-              estudantil, promovendo integração, competitividade saudável e engajamento entre os participantes.
-              Um dos maiores desafios sempre foi a criação de conteúdo visual para divulgação dos times, como artes
-              com fotos e informações dos jogadores. O álbum digital desenvolvido neste trabalho surgiu exatamente
-              como uma solução moderna para esse problema, oferecendo uma forma prática, rápida e interativa de
-              apresentar os elencos, além de permitir a gamificação da experiência por meio de figurinhas digitais.
+              The Exatas Cup is a futsal championship organized by students of the Institute of Exact Sciences
+              at the University of Brasília (UnB), bringing together students from Mathematics, Computer Science
+              and Statistics. The tournament had editions in 2024 and 2025 and became a significant event in the
+              academic community, promoting integration, healthy competition and engagement among participants.
+              One of the biggest challenges has always been creating visual content to showcase the teams, such
+              as player cards with photos and information. The digital sticker album developed in this project
+              emerged precisely as a modern solution to this problem, offering a practical, fast and interactive
+              way to present rosters, while also enabling gamification through digital collectibles.
             </p>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              Para isso, adotamos o padrão <strong>ERC-1155</strong>, que permite representar múltiplas figurinhas dentro
-              de um único smart contract, economizando gás, simplificando o gerenciamento e oferecendo
-              suporte a itens semi-fungíveis — exatamente o que um álbum de figurinhas exige. Esse padrão
-              é amplamente utilizado em jogos, colecionáveis e marketplaces devido à sua flexibilidade e
-              eficiência.
+              To achieve this, we adopted the <strong>ERC-1155</strong> standard, which allows representing multiple
+              stickers inside a single smart contract, reducing gas costs, simplifying management and offering
+              support for semi-fungible items — exactly what a sticker album requires. This standard is widely
+              used in games, collectibles and marketplaces due to its flexibility and efficiency.
             </p>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              A plataforma não apenas exibe as figurinhas, mas também integra um sistema de <strong>trocas P2P</strong> controlado pelo contrato inteligente. As operações de compra, listagem, aceite e cancelamento
-              são registradas de forma transparente e auditável, garantindo confiabilidade e imutabilidade
-              dos dados — princípios fundamentais em aplicações baseadas em blockchain.
+              The platform not only displays the stickers but also integrates a <strong>P2P trading system</strong>
+              controlled by the smart contract. Purchase operations, listings, acceptances and cancellations
+              are recorded transparently and are fully auditable, ensuring reliability and immutability —
+              fundamental principles in blockchain-based applications.
             </p>
           </section>
 
-          {/* --- ARQUITETURA E DECISÕES --- */}
+          {/* --- ARCHITECTURE AND DECISIONS --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Arquitetura e Decisões de Projeto</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Architecture and Design Decisions</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              O sistema foi construído adotando uma arquitetura moderna dividida em três camadas:
+              The system was built using a modern architecture divided into three layers:
             </p>
 
             <ul className="list-disc pl-6 mt-4 text-gray-700 space-y-2 leading-relaxed">
               <li>
-                <strong>Camada Blockchain:</strong> responsável por toda a lógica de figurinhas,
-                transferências, mint, validações e controle de propriedade. Implementada 100% em Solidity
-                e implantada na rede Sepolia.
+                <strong>Blockchain Layer:</strong> responsible for all sticker logic,
+                transfers, minting, validations and ownership control. Implemented fully in Solidity
+                and deployed on the Sepolia network.
               </li>
 
               <li>
-                <strong>Camada Frontend:</strong> desenvolvida em Next.js com React, responsável pela
-                interface com o usuário, renderização dinâmica e conexão com a carteira digital (MetaMask).
+                <strong>Frontend Layer:</strong> developed in Next.js with React, responsible for
+                the user interface, dynamic rendering and connection to the digital wallet (MetaMask).
               </li>
 
               <li>
-                <strong>Camada de Dados Off-chain:</strong> utiliza o Firestore para armazenar informações
-                que não precisam ficar na blockchain, como ofertas de troca, preferências do usuário e
-                metadados auxiliares.
+                <strong>Off-chain Data Layer:</strong> uses Firestore to store information
+                that does not need to remain on the blockchain, such as trade offers, user preferences
+                and auxiliary metadata.
               </li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              Essa divisão permite que operações críticas e sensíveis fiquem protegidas na blockchain,
-              enquanto informações complementares e temporárias são mantidas fora dela para reduzir custos
-              e otimizar a experiência do usuário.
+              This division allows critical and sensitive operations to remain protected on-chain,
+              while complementary or temporary information stays off-chain to reduce costs and improve user experience.
             </p>
           </section>
 
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Rede Ethereum Sepolia</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Ethereum Sepolia Network</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              A <strong>Sepolia</strong> é uma das redes de teste oficiais do Ethereum, projetada para permitir o
-              desenvolvimento e validação de smart contracts sem custos reais. Ela funciona de forma
-              semelhante à rede principal (Mainnet), mas utiliza tokens de teste (ETH Sepolia) obtidos via faucet.
+              <strong>Sepolia</strong> is one of Ethereum’s official test networks, designed to enable
+              the development and validation of smart contracts without real financial costs. It works
+              similarly to the main network (Mainnet), but uses test tokens (Sepolia ETH) obtained via faucet.
             </p>
 
             <p className="text-gray-700 leading-relaxed mt-3">
-              No projeto, a Sepolia foi utilizada para realizar o deploy do contrato ERC-1155 que representa as
-              figurinhas digitais, garantindo um ambiente seguro para testes de mint, transferências e trocas
-              entre usuários antes de uma possível migração para a Mainnet.
+              In this project, Sepolia was used to deploy the ERC-1155 contract that represents the
+              digital stickers, ensuring a safe environment for testing minting, transfers and trades
+              between users before a possible migration to Mainnet.
             </p>
 
             <ul className="list-disc pl-6 mt-4 text-gray-700 space-y-2 leading-relaxed">
-              <li>Baixo custo e nenhum risco financeiro para desenvolvedores.</li>
-              <li>Compatibilidade total com EVM e ferramentas como Hardhat e MetaMask.</li>
-              <li>Ambiente ideal para testar transações, eventos e integrações Web3.</li>
+              <li>Low cost and no financial risk for developers.</li>
+              <li>Full compatibility with EVM and tools such as Hardhat and MetaMask.</li>
+              <li>Ideal environment for testing transactions, events and Web3 integrations.</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              A escolha da Sepolia torna o desenvolvimento mais rápido, econômico e confiável, permitindo validar
-              cada funcionalidade blockchain da aplicação antes de uma implantação definitiva.
+              Choosing Sepolia makes development faster, cheaper and more reliable, allowing every blockchain
+              functionality to be tested before a final deployment.
             </p>
           </section>
 
-
-          {/* --- DETALHES DO SMART CONTRACT --- */}
+          {/* --- SMART CONTRACT --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Smart Contract em Solidity (ERC-1155)</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Solidity Smart Contract (ERC-1155)</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              O contrato inteligente foi desenvolvido utilizando o framework <strong>Hardhat</strong>, que oferece um
-              ambiente robusto para compilação, execução local, testes automatizados e deploy. O padrão
-              ERC-1155 foi escolhido por fornecer:
+              The smart contract was developed using the <strong>Hardhat</strong> framework, which provides a robust
+              environment for compilation, local execution, automated tests and deployment. The ERC-1155 standard
+              was chosen because it provides:
             </p>
 
             <ul className="list-disc pl-6 mt-4 text-gray-700 space-y-2 leading-relaxed">
-              <li>Suporte eficiente para mint de vários itens em uma única transação.</li>
-              <li>Representação compacta de figurinhas repetidas.</li>
-              <li>Transferências em lote, reduzindo custos.</li>
-              <li>Flexibilidade para gerenciar ids, quantidades e metadados.</li>
+              <li>Efficient support for minting multiple items in a single transaction.</li>
+              <li>Compact representation of duplicate stickers.</li>
+              <li>Batch transfers to reduce costs.</li>
+              <li>Flexibility for managing IDs, quantities and metadata.</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              Cada figurinha foi associada a um metadado JSON seguindo o padrão ERC-1155 Metadata URI,
-              contendo nome, descrição, foto e informações adicionais dos jogadores da Exatas Cup.
+              Each sticker was associated with a JSON metadata file following the ERC-1155 Metadata URI standard,
+              containing name, description, image and additional player information from the Exatas Cup.
             </p>
           </section>
 
           {/* --- METAMASK --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Integração com a MetaMask</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">MetaMask Integration</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              A MetaMask desempenha o papel de intermediária entre a aplicação e a blockchain, permitindo ao usuário:
+              MetaMask acts as the intermediary between the application and the blockchain, allowing users to:
             </p>
 
             <ul className="list-disc pl-6 mt-4 text-gray-700 space-y-2 leading-relaxed">
-              <li>Conectar sua carteira.</li>
-              <li>Assinar transações.</li>
-              <li>Trocar de rede (para Sepolia).</li>
-              <li>Gerenciar endereços e saldos.</li>
+              <li>Connect their wallet.</li>
+              <li>Sign transactions.</li>
+              <li>Switch networks (to Sepolia).</li>
+              <li>Manage addresses and balances.</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              Todas as ações sensíveis, como comprar figurinhas ou aceitar uma troca, exigem autorização explícita
-              da MetaMask. Isso garante segurança, transparência e compatibilidade total com padrões Web3.
+              All sensitive actions—such as buying stickers or accepting a trade—require explicit authorization
+              from MetaMask. This ensures security, transparency and full Web3 compatibility.
             </p>
           </section>
 
           {/* --- FRONTEND --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Frontend em Next.js</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Frontend in Next.js</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              O frontend foi implementado utilizando o <strong>Next.js</strong> devido à sua performance, organização e suporte
-              nativo a rotas, otimização automática e API Routes. A interface foi planejada com foco em:
+              The frontend was implemented using <strong>Next.js</strong> due to its performance, structure and native
+              support for routing, automatic optimization and API Routes. The interface was designed with focus on:
             </p>
 
             <ul className="list-disc pl-6 mt-4 text-gray-700 space-y-2 leading-relaxed">
-              <li>Simples navegar entre loja, álbum e área de trocas.</li>
-              <li>Conectar carteira e mudar redes de maneira intuitiva.</li>
-              <li>Exibir figurinhas com layout responsivo.</li>
-              <li>Mostrar mensagens claras após transações blockchain.</li>
+              <li>Simple navigation between store, album and trading area.</li>
+              <li>Intuitive wallet connection and network switching.</li>
+              <li>Responsive layout for displaying stickers.</li>
+              <li>Clear messages after blockchain transactions.</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              Toda interação com o contrato foi encapsulada em chamadas Web3 utilizando ethers.js, garantindo uma
-              experiência fluida mesmo em operações assíncronas.
+              All contract interactions were encapsulated using Web3 calls via ethers.js, ensuring a
+              smooth experience even for asynchronous operations.
             </p>
           </section>
 
+          {/* --- FIREBASE --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Integração com o Firebase</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Firebase Integration</h2>
 
             <p className="text-gray-700 leading-relaxed">
-              O <strong>Firebase</strong> é utilizado como a camada de dados off-chain do projeto, armazenando informações
-              que não precisam ser registradas diretamente na blockchain, como ofertas de troca, preferências
-              de usuários e metadados auxiliares. Isso reduz custos, aumenta a eficiência e garante uma
-              experiência de uso mais fluida.
+              <strong>Firebase</strong> is used as the off-chain data layer of the project, storing information
+              that does not need to be recorded directly on the blockchain, such as trade offers, user preferences
+              and auxiliary metadata. This reduces costs, increases efficiency and provides a smoother user experience.
             </p>
 
             <p className="text-gray-700 leading-relaxed mt-3">
-              Sua escolha foi motivada pela necessidade de sincronização rápida, estrutura serverless e
-              integração simples com aplicações web. Ele trabalha em conjunto com a blockchain,
-              complementando as operações descentralizadas.
+              Its choice was motivated by the need for fast synchronization, serverless structure and
+              simple integration with web applications. It works alongside the blockchain,
+              complementing decentralized operations.
             </p>
 
             <ul className="list-disc pl-6 mt-4 text-gray-700 space-y-2 leading-relaxed">
-              <li><strong>Cloud Firestore:</strong> registra e sincroniza ofertas de troca em tempo real.</li>
-              <li><strong>Authentication:</strong> auxilia no gerenciamento de sessões e usuários.</li>
-              <li><strong>Hosting:</strong> garante deploy rápido, seguro e com ótima performance.</li>
+              <li><strong>Cloud Firestore:</strong> stores and synchronizes trade offers in real time.</li>
+              <li><strong>Authentication:</strong> assists in managing users and sessions.</li>
+              <li><strong>Hosting:</strong> provides secure, fast and reliable deployments.</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mt-4">
-              Essa combinação permite unir segurança on-chain com agilidade off-chain, criando uma plataforma
-              moderna, leve e escalável.
+              This combination merges on-chain security with off-chain agility, creating a modern,
+              lightweight and scalable platform.
             </p>
           </section>
 
-          {/* --- COMO USAR --- */}
+          {/* --- HOW TO USE --- */}
           <section className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Guia Detalhado de Uso</h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mb-5">Detailed Usage Guide</h2>
 
             <ol className="list-decimal pl-6 space-y-4 text-gray-700 leading-relaxed text-lg">
               <li>
-                Instale a extensão MetaMask e configure sua carteira.
+                Install the MetaMask extension and set up your wallet.
               </li>
               <li>
-                No site, clique em <strong>“Conectar Carteira”</strong> para permitir acesso ao endereço público.
+                On the website, click <strong>“Connect Wallet”</strong> to allow access to your public address.
               </li>
               <li>
-                Conecte-se à rede <strong>Sepolia</strong> (a própria interface ajuda caso a rede não esteja adicionada).
+                Connect to the <strong>Sepolia</strong> network (the interface helps you add the network if needed).
               </li>
               <li>
-                Acesse a <strong>Loja de Figurinhas</strong> para comprar pacotes.
+                Go to the <strong>Sticker Store</strong> to purchase packs.
               </li>
               <li>
-                Veja suas figurinhas em <strong>Minhas Figurinhas</strong>, filtradas por time e jogador.
+                View your stickers in <strong>My Stickers</strong>, filtered by team and player.
               </li>
               <li>
-                Vá até <strong>Trocas</strong> para:
+                Go to <strong>Trades</strong> to:
                 <ul className="list-disc pl-6 mt-2 space-y-1">
-                  <li>Criar sua própria oferta de troca.</li>
-                  <li>Aceitar ofertas de outros jogadores.</li>
-                  <li>Acompanhar as transações sendo assinadas via MetaMask.</li>
+                  <li>Create your own trade offer.</li>
+                  <li>Accept offers from other players.</li>
+                  <li>Follow transactions being signed via MetaMask.</li>
                 </ul>
               </li>
               <li>
-                As ofertas aceitas são automaticamente removidas, garantindo consistência e atualizações em tempo real.
+                Accepted offers are automatically removed, ensuring consistency and real-time updates.
               </li>
             </ol>
           </section>
         </div>
 
         <footer className="mt-16 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Álbum de Figurinhas (Exatas Cup) - Documentação do projeto
+          © {new Date().getFullYear()} Sticker Album (Exatas Cup) – Project Documentation
         </footer>
       </div>
     </div>
