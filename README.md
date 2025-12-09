@@ -364,13 +364,19 @@ npm run dev
 ```
 
 Access the application at: [http://localhost:3000](http://localhost:3000) (for development)  
-**Live Deployment:** [https://fungible-tokens-sticker-album.vercel.app](https://fungible-tokens-sticker-album.vercel.app)
+
 
 ### 6.4 MetaMask Configuration
 
 1. Add the Sepolia network via [ChainList](https://chainlist.org/chain/11155111)
 2. Import your account with test ETH
 3. Connect your wallet through the dApp interface
+
+
+
+### 6.5 Live Deployment:
+
+- [https://fungible-tokens-sticker-album.vercel.app](https://fungible-tokens-sticker-album.vercel.app)
 
 ---
 
