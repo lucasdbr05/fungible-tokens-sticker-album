@@ -129,7 +129,7 @@ export default function LandingPage() {
             <h3 className="text-xl font-semibold text-gray-900">
               Gustavo Mello Tonnera
             </h3>
-            <p className="text-gray-600 mt-1">ID Number: 211055272</p>
+            <p className="text-gray-600 mt-1">Matrícula: 211055272</p>
           </div>
 
           {/* Card 2 */}
@@ -164,9 +164,9 @@ export default function LandingPage() {
               className="w-32 h-32 mx-auto rounded-full object-cover mb-4 border-2 border-green-600"
             />
             <h3 className="text-xl font-semibold text-gray-900">
-              Nome Completo 4
+              Wallysson Matheus de Queiroz Silva
             </h3>
-            <p className="text-gray-600 mt-1">ID Number: 000000000</p>
+            <p className="text-gray-600 mt-1">Matrícula: 231038798</p>
           </div>
         </div>
       </section>
