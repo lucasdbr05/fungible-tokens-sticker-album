@@ -27,8 +27,8 @@ export default function ColecaoPage() {
   const [balances, setBalances] = useState<{ [key: number]: number }>({});
   const [metadata, setMetadata] = useState<{ [key: number]: Metadata }>({});
   const [loading, setLoading] = useState(true);
-  const TEAMS = ["Time A", "Time B"]; 
-  const [selectedTeam, setSelectedTeam] = useState("Time A");
+  const TEAMS = ["Panela Furada", "Nicotinados","Selecic"]; 
+  const [selectedTeam, setSelectedTeam] = useState("Panela Furada");
 
   useEffect(() => {
     const saved = localStorage.getItem("wallet_address");
