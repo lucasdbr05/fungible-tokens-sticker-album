@@ -1,18 +1,16 @@
 # A Decentralized Digital Sticker Album System Using ERC-1155 Smart Contracts and Off-Chain Signed Orders
 
-*UnB - University of Brasília | Cryptocurrency Design and Engineering*
+**UnB - University of Brasília | Cryptocurrency Design and Engineering**
 
 ---
-## Members
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/cauetrd" target="_blank"><img style="border-radius: 50%;" src="https://github.com/cauetrd.png" width="100px;" alt="Cauê Trindade"/><br /><sub><b>Cauê Trindade - 231019003</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/GMTonnera" target="_blank"><img style="border-radius: 50%;" src="https://github.com/GMTonnera.png" width="100px;" alt="Gustavo Melo"/><br /><sub><b>Gustavo Melo - 211055272</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/lucasdbr05" target="_blank"><img style="border-radius: 50%;" src="https://github.com/lucasdbr05.png" width="100px;" alt="Lucas Lima"/><br /><sub><b>Lucas Lima - 231003406</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/WallyssonMQSilva" target="_blank"><img style="border-radius: 50%;" src="https://github.com/WallyssonMQSilva.png" width="100px;" alt="Wallysson Matheus"/><br /><sub><b>Wallysson Matheus - 231038798</b></sub></a><br /></td>
-</td>
-</table>
+## Team Members
+
+- **Cauê Trindade** (231019003) - [@cauetrd](https://github.com/cauetrd)
+- **Gustavo Melo** (211055272) - [@GMTonnera](https://github.com/GMTonnera)
+- **Lucas Lima** (231003406) - [@lucasdbr05](https://github.com/lucasdbr05)
+- **Wallysson Matheus** (231038798) - [@WallyssonMQSilva](https://github.com/WallyssonMQSilva)
+
 ---
 
 ## Abstract
@@ -93,11 +91,8 @@ function buyPack() external payable
 - Emits `PackPurchased` event for frontend integration
 
 **Metadata Resolution:**
-```solidity
-function uri(uint256 _id) public view override returns (string memory)
-```
-- Provides an IPFS-based URI for token metadata in the format: `baseURI + "id_" + tokenId + ".json"`
-- Metadata includes player name, team, and image CID
+- Provides IPFS-based URIs for token metadata
+- Metadata includes player name, team, and image information
 
 ### 3.2 Decentralized Trading System
 
@@ -120,15 +115,9 @@ struct Order {
 ```
 
 **Trading Protocol Flow:**
-
 ```
-User A (Maker)          Smart Contract          User B (Taker)
-      |                      |                         |
-      |-- 1. Create Order -->|                         |
-      |-- 2. Sign EIP-712 -->|                         |
-      |                      |<-- 3. Accept Order -----|
-      |                      |-- 4. Verify Signature --|
-      |<-- 5. Transfer ------+------ Transfer -------->|
+User A (Maker) → Create Order → Sign EIP-712 → Store Off-Chain
+User B (Taker) → Accept Order → Execute On-Chain → Atomic Swap
 ```
 
 ### 3.3 Hybrid Data Architecture
