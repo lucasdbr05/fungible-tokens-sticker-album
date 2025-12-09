@@ -109,12 +109,12 @@ export default function LandingPage() {
           {/* Card 3 */}
           <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition">
             <img
-              src="/membros/membro3.jpg"
+              src="https://avatars.githubusercontent.com/u/123587411?v=4"
               alt="Foto do integrante 3"
               className="w-32 h-32 mx-auto rounded-full object-cover mb-4 border-2 border-green-600"
             />
-            <h3 className="text-xl font-semibold text-gray-900">Nome Completo 3</h3>
-            <p className="text-gray-600 mt-1">Matrícula: 000000000</p>
+            <h3 className="text-xl font-semibold text-gray-900">Lucas Gabriel de Oliveira lima</h3>
+            <p className="text-gray-600 mt-1">Matrícula: 231003406</p>
           </div>
 
           {/* Card 4 */}
