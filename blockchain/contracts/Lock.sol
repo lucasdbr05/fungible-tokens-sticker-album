@@ -15,7 +15,7 @@ contract Lock is ERC1155, Ownable {
     mapping(uint256 => uint256) public minted;
 
     constructor(string memory _baseURI) ERC1155("") Ownable(msg.sender) {
-        baseURI = _baseURI; // e.g. "ipfs://QmABC123/"
+        baseURI = _baseURI;
     }
 
     function uri(uint256 _id) public view override returns (string memory) {
