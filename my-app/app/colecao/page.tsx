@@ -9,7 +9,7 @@ const CONTRACT_ADDRESS = contractInfo.address;
 console.log(CONTRACT_ADDRESS);
 
 // IDs das figurinhas (1 a 20)
-const STICKERS = Array.from({ length: 20 }, (_, i) => i + 1);
+const STICKERS = Array.from({ length: 27 }, (_, i) => i + 1);
 
 // ABI mínima do ERC-1155
 const abi = [
@@ -27,7 +27,7 @@ export default function ColecaoPage() {
   const [balances, setBalances] = useState<{ [key: number]: number }>({});
   const [metadata, setMetadata] = useState<{ [key: number]: Metadata }>({});
   const [loading, setLoading] = useState(true);
-  const TEAMS = ["Panela Furada", "Nicotinados","Selecic"]; 
+  const TEAMS = ["Panela Furada", "Nicotinados", "Selecic"];
   const [selectedTeam, setSelectedTeam] = useState("Panela Furada");
 
   useEffect(() => {
@@ -83,8 +83,7 @@ export default function ColecaoPage() {
     }
   };
 
-
-    // ---- UI ----
+  // ---- UI ----
   if (!wallet) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-8">
@@ -103,7 +102,6 @@ export default function ColecaoPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-8">
       <div className="max-w-6xl mx-auto">
-
         <h1 className="text-4xl font-bold text-green-700 mb-10 text-center">
           My Stickers
         </h1>
@@ -116,9 +114,11 @@ export default function ColecaoPage() {
               onClick={() => setSelectedTeam(team)}
               className={`
                 px-6 py-2 rounded-full font-semibold transition shadow
-                ${selectedTeam === team
-                  ? "bg-green-600 text-white shadow-lg"
-                  : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"}
+                ${
+                  selectedTeam === team
+                    ? "bg-green-600 text-white shadow-lg"
+                    : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
+                }
               `}
             >
               {team}
@@ -127,7 +127,9 @@ export default function ColecaoPage() {
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-500 text-lg">Loading collection...</p>
+          <p className="text-center text-gray-500 text-lg">
+            Loading collection...
+          </p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {STICKERS.map((id) => {
@@ -140,13 +142,12 @@ export default function ColecaoPage() {
               return (
                 <div
                   key={id}
-                  className="flex flex-col items-center bg-white rounded-xl shadow-md p-4 border border-gray-200"
+                  className={`flex flex-col items-center bg-white rounded-xl shadow-md p-4 border border-gray-200 relative overflow-hidden
+    ${amount === 0 ? "opacity-80" : ""}`}
                 >
                   {/* FIGURINHA ESTILO PANINI */}
                   <div className="relative w-full bg-white border border-gray-300 rounded-lg shadow-sm p-2">
-
-                    <div className="border-4 border-yellow-500 rounded-lg p-1 bg-white">
-
+                    <div className="border-4 border-yellow-500 rounded-lg p-1 bg-white relative">
                       {/* LOGO */}
                       <img
                         src="/icons/logo-exatascup.png"
@@ -160,19 +161,35 @@ export default function ColecaoPage() {
                       </div>
 
                       {/* FOTO */}
-                      <div className="w-full h-40 bg-gray-100 rounded-md overflow-hidden shadow-sm">
+                      <div className="w-full h-40 bg-gray-100 rounded-md overflow-hidden shadow-sm relative">
                         <img
-                          src={data.image}
+                          src={data.image.replace(
+                            "ipfs://",
+                            "https://ipfs.io/ipfs/"
+                          )}
                           alt={data.name}
                           className="w-full h-full object-cover"
                         />
+
+                        {/* 🔒 Overlay when locked */}
+                        {amount === 0 && (
+                          <div className="absolute inset-0 bg-black/95 backdrop-blur-[1px] flex flex-col items-center justify-center text-white text-sm font-semibold rounded-md">
+                            <span>To unlock</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* NOME + BANDEIRA */}
                       <div className="flex items-center justify-between mt-2 px-1">
                         <div className="flex items-center gap-1">
-                          <img src="/icons/brazil.png" className="w-5 h-5" alt="BRA" />
-                          <span className="text-xs font-bold text-green-800">BRA</span>
+                          <img
+                            src="/icons/brazil.png"
+                            className="w-5 h-5"
+                            alt="BRA"
+                          />
+                          <span className="text-xs font-bold text-green-800">
+                            BRA
+                          </span>
                         </div>
 
                         <span className="text-xs font-bold text-gray-700">
@@ -184,13 +201,16 @@ export default function ColecaoPage() {
 
                   {/* QUANTIDADE */}
                   <div className="mt-4">
-                    <div className="w-12 h-12 rounded-full bg-green-600 shadow-md flex items-center justify-center">
+                    <div
+                      className={`w-12 h-12 rounded-full shadow-md flex items-center justify-center ${
+                        amount > 0 ? "bg-green-600" : "bg-gray-400"
+                      }`}
+                    >
                       <span className="text-white font-bold text-lg">
                         {amount}x
                       </span>
                     </div>
                   </div>
-
                 </div>
               );
             })}
