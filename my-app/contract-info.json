@@ -1,8 +1,8 @@
 {
   "network": "sepolia",
-  "address": "0x09365dd33845bEEE09999efA0D8F78FcCc162eca",
+  "address": "0x4CDd4BDf9164D00Ac6Af188624E38aEb11337f17",
   "pack_price": 0.001,
   "amount_per_pack": 5,
-  "different_stickers": 20,
+  "different_stickers": 27,
   "swap_address": "0x394Ce046c9489c3BAFb0bc5a9B6E8030Cd263b42"
 }
