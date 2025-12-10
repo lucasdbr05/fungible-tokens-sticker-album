@@ -93,7 +93,7 @@ function buyPack() external payable
 - Emits `PackPurchased` event for frontend integration
 
 **Metadata Resolution:**
-- Provides IPFS-based URIs for token metadata
+- Provides IPFS-based URIs for token metadata using Pinata for decentralized storage
 - Metadata includes player name, team, and image information
 
 ### 3.2 Decentralized Trading System
@@ -289,6 +289,7 @@ async function connectWallet() {
 | **OpenZeppelin Contracts** | 5.4.0 | Audited contract implementations |
 | **Ethers.js** | 6.15.0 | Web3 provider and contract interaction |
 | **EIP-712** | Standard | Typed structured data signing |
+| **Pinata** | Standard | Decentralized content storage and management|
 
 ### 5.2 Frontend Layer
 
@@ -380,39 +381,9 @@ Access the application at: [http://localhost:3000](http://localhost:3000) (for d
 
 ---
 
-## 7. Results and Analysis
-
-### 7.1 Deployment Metrics
-
-The system was successfully deployed on the Ethereum Sepolia testnet with these parameters:
-
-- **Token Contract Address:** `0x09365dd33845bEEE09999efA0D8F78FcCc162eca`
-- **Trading Contract Address:** `0x394Ce046c9489c3BAFb0bc5a9B6E8030Cd263b42`
-- **Network:** Sepolia (Chain ID: 11155111)
-- **Total Token Types:** 27 unique sticker IDs
-- **Pack Price:** 0.001 ETH (~$3.50 at current rates)
-- **Stickers Per Pack:** 5 tokens
-
-### 7.2 Security Audit Results
-
-A manual security review found and fixed:
-
-1. **Reentrancy Protection:** OpenZeppelin's SafeERC1155 guards against callbacks
-2. **Integer Overflow:** Solidity 0.8.20 has built-in overflow checks
-3. **Access Control:** Using the ownable pattern limits administrative actions
-4. **Signature Replay:** Nonce mapping prevents double-spending of signatures
-5. **Front-Running:** Setting deadlines and off-chain storage reduces MEV threats
-
-## 8. Conclusion
+## 7. Conclusion
 
 This work showcases a complete implementation of a decentralized digital sticker album using modern blockchain technology. The hybrid structure, which combines ERC-1155 tokens with EIP-712 signed orders, presents effective solutions to common blockchain issues such as high gas costs, poor user experience, and scalability limitations.
-
-Key achievements include:
-
-1. **Technical Innovation:** Successful establishment of an off-chain order book with on-chain settlements
-2. **Gas Efficiency:** Over 90% reduction in costs compared to conventional NFT methods
-3. **User Experience:** Seamless MetaMask integration with understandable signatures
-4. **Real-World Application:** Meeting the genuine needs of the Exatas Cup community
 
 The system shows that blockchain technology can bring real value beyond mere speculation, creating verifiable digital collectibles that strengthen community engagement. While the current implementation runs on a testnet, the architecture is ready for production use and can scale for mainnet deployment with the right infrastructure investments.
 
